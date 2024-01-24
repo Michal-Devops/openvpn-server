@@ -1,0 +1,20 @@
+#!/bin/bash
+sudo yum update -y
+# i need install this cuz openvpn ist availabble in the dault centos respositories 
+sudo yum install epel-release -y 
+
+sudo yum update -y
+
+sudo yum install -y openvpn wget
+
+wget -O /tmp/easyrsa https://github.com/OpenVPN/easy-rsa-old/archive/2.3.3.tar.gz
+
+tar xfz /tmp/easyrsa
+sudo mkdir /etc/openvpn/easy-rsa
+sudo cp -rf easy-rsa-old-2.3.3/easy-rsa/2.0/* /etc/openvpn/easy-rsa
+sudo chown vagrant /etc/openvpn/easy-rsa/
+
+sudo cp  /usr/share/doc/openvpn-2.4.12/sample/sample-config-files/server.conf /etc/openvpn
+
+yum install nano -y
+
